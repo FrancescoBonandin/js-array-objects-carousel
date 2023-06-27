@@ -18,7 +18,7 @@
 .my-container{
     max-width: 1200px;
     
-    min-height: 100vh;
+    min-height: calc(100vh - 4rem);
 
     margin: 0 auto;
 
@@ -32,7 +32,7 @@
     width: 900px;
     height: 600px;
     margin: 0 auto;
-    margin-top: calc((100vh - 600px) / 2 );
+    margin-top: calc((100vh - 4rem - 600px) / 2 );
     
 }
 
@@ -160,4 +160,22 @@
     text-align: right;
     color: white;
     z-index: 1;
+}
+
+.autoplay-container{
+    width: 1200px;
+    min-height: 4rem;
+    margin: 0 auto;
+}
+
+.autoplay-container > .wrapper{
+    justify-content: space-around;
+
+}
+
+#autoplay-start-and-stop, #autoplay-reverse{
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: greenyellow;
+    background-color: brown;
 }

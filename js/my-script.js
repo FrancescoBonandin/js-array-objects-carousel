@@ -62,6 +62,7 @@ const images = [
  infoContainer.append(infoContainerTitle)
  infoContainer.append(infoContainerText)
 
+ let topToBottom = true;
 
  for(i;i<images.length;i++){
 
@@ -104,7 +105,7 @@ const images = [
         newItem.classList.add("active")
 
         newThumbnailItemContainer.querySelector(".overlay").classList.add("hide")
-        
+
         infoContainerTitle.innerHTML = images[i].title;
         infoContainerText.innerHTML = images[i].text;
 
@@ -210,7 +211,7 @@ nextBtn.addEventListener("click", function(){
             
         }
         
-        }
+    }
 
         j--
 
@@ -225,7 +226,7 @@ nextBtn.addEventListener("click", function(){
 
         infoContainerTitle.innerHTML = images[j].title;
         infoContainerText.innerHTML = images[j].text;
-
+        
 
   }
   )
@@ -241,4 +242,198 @@ nextBtn.addEventListener("click", function(){
     }
     )
 
-   
+    
+    let clock = setInterval(() => {
+        
+        if(topToBottom == true){
+            
+            for(let index = 0; index < overlayCollection.length;index++){
+                
+                if(overlayCollection[index].classList.contains("hide") &&
+                    itemCollection[index].classList.contains("active")){
+                        
+                        
+                        overlayCollection[index].classList.remove("hide")
+                        
+                        itemCollection[index].classList.remove("active")
+                        
+                        j=index
+                        
+                        index = overlayCollection.length
+                        
+                    }
+                    
+                }
+                
+                j++;
+                
+                if(j > images.length - 1){
+                    
+                    j=0;      
+                    
+                }
+                
+                itemCollection[j].classList.add("active");
+                overlayCollection[j].classList.add("hide");
+                
+                infoContainerTitle.innerHTML = images[j].title;
+                infoContainerText.innerHTML = images[j].text;
+            }
+            
+            else if(topToBottom != true){
+                
+                for(let index = 0; index < overlayCollection.length;index++){
+                    
+                    if(overlayCollection[index].classList.contains("hide") &&
+                    itemCollection[index].classList.contains("active")){
+                        
+                        
+                        overlayCollection[index].classList.remove("hide")
+                        
+                        itemCollection[index].classList.remove("active")
+                        
+                        j=index
+                        
+                        index = overlayCollection.length
+                        
+                    }
+                    
+                }
+                
+                j--
+                
+                if(j<0){
+                    
+                    j=images.length - 1 
+                    
+                }
+                
+                itemCollection[j].classList.add("active");
+                overlayCollection[j].classList.add("hide");
+
+                infoContainerTitle.innerHTML = images[j].title;
+                infoContainerText.innerHTML = images[j].text;
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }, 3000);
+        
+const autoplayStartAndStop = document.getElementById("autoplay-start-and-stop");
+
+autoplayStartAndStop.addEventListener("click",function(){
+
+    if(this.firstElementChild.classList.contains("fa-play")){
+
+        this.firstElementChild.classList.replace("fa-play","fa-stop")
+
+        clock = setInterval(() => {
+
+            if(topToBottom == true){
+                
+                for(let index = 0; index < overlayCollection.length;index++){
+                    
+                    if(overlayCollection[index].classList.contains("hide") &&
+                        itemCollection[index].classList.contains("active")){
+                            
+                            
+                            overlayCollection[index].classList.remove("hide")
+                            
+                            itemCollection[index].classList.remove("active")
+                            
+                            j=index
+                            
+                            index = overlayCollection.length
+                            
+                        }
+                        
+                    }
+                    
+                    j++;
+                    
+                    if(j > images.length - 1){
+                        
+                        j=0;      
+                        
+                    }
+                    
+                    itemCollection[j].classList.add("active");
+                    overlayCollection[j].classList.add("hide");
+                    
+                    infoContainerTitle.innerHTML = images[j].title;
+                    infoContainerText.innerHTML = images[j].text;
+                }
+                
+                else if(topToBottom != true){
+                    
+                    for(let index = 0; index < overlayCollection.length;index++){
+                        
+                        if(overlayCollection[index].classList.contains("hide") &&
+                        itemCollection[index].classList.contains("active")){
+                            
+                            
+                            overlayCollection[index].classList.remove("hide")
+                            
+                            itemCollection[index].classList.remove("active")
+                            
+                            j=index
+                            
+                            index = overlayCollection.length
+                            
+                        }
+                        
+                    }
+                    
+                    j--
+                    
+                    if(j<0){
+                        
+                        j=images.length - 1 
+                        
+                    }
+                    
+                    itemCollection[j].classList.add("active");
+                    overlayCollection[j].classList.add("hide");
+
+                    infoContainerTitle.innerHTML = images[j].title;
+                    infoContainerText.innerHTML = images[j].text;
+                    
+                    
+                }
+                
+                
+                
+                
+                
+                
+            }, 3000);
+
+    }
+    
+    else if(this.firstElementChild.classList.contains("fa-stop")){
+        
+        clearInterval(clock)
+
+        this.firstElementChild.classList.replace("fa-stop","fa-play")
+    }
+})
+
+    const autoplayReverse = document.getElementById("autoplay-reverse");
+
+    autoplayReverse.addEventListener("click", function(){
+
+        if(this.firstElementChild.classList.contains("fa-backward")){
+            this.firstElementChild.classList.replace("fa-backward", "fa-forward");
+            topToBottom = false;
+        }
+     
+        else if(this.firstElementChild.classList.contains("fa-forward")){
+            this.firstElementChild.classList.replace("fa-forward", "fa-backward");
+            topToBottom = true;
+        }
+    })
