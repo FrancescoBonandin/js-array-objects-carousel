@@ -42,8 +42,9 @@
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    background-color: bisque;
+    background-color:rgba(0, 0, 0, 0.5) ;
     text-align: center;
+    z-index: 2;
   
 }
 
@@ -53,16 +54,22 @@
 }
 
 .my-button.next{
-    bottom: 10px;
+    bottom: 80px;
     left: 50%;
 }
 
-.my-button.translated{
-    left: calc(100% - 100px);
+.my-button.previous.translated{
+    left: calc(100% + 150px);
+}
+
+.my-button.next.translated{
+    left: calc(100% + 150px);
+    bottom: 10px;
 }
 
 .my-button > *{
     line-height: 50px;
+    color: white;
 }
 
 
@@ -139,4 +146,18 @@
 
 .thumbnail-item-container .overlay.hide{
     display: none;
+}
+
+.info-container{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(20, 18, 60, 0.7);
+}
+
+.info-container > *{
+    text-align: right;
+    color: white;
+    z-index: 1;
 }

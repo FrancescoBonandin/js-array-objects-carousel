@@ -53,15 +53,23 @@ const images = [
  
  wrapper.append(thumbnailGallery)
 
+ const infoContainer = document.createElement("div")
 
- for(i;i<slider.length;i++){
+ const infoContainerTitle = document.createElement("h2")
 
-    let arrayElement = slider[i]
+ const infoContainerText = document.createElement("div")
+
+ infoContainer.append(infoContainerTitle)
+ infoContainer.append(infoContainerText)
+
+
+ for(i;i<images.length;i++){
+
+    let arrayElement = images[i]
 
     const newItem = document.createElement("img")
 
-    newItem.setAttribute("src", ` ${arrayElement} `)
-    
+    newItem.setAttribute("src", ` ${arrayElement.image} `)
     
     newItem.classList.add("item")
     
@@ -75,7 +83,7 @@ const images = [
     itemCollection.push(newItem)
     overlayCollection.push(overlay)
 
-    newThumbnailItem.setAttribute("src", `${arrayElement}`)
+    newThumbnailItem.setAttribute("src", `${arrayElement.image}`)
 
     
     thumbnailGallery.append(newThumbnailItemContainer)
@@ -91,11 +99,15 @@ const images = [
 
     newThumbnailItem.classList.add("thumbnail-item")
 
-    if(slider[i] == slider[0]){
+    if(images[i] == images[0]){
 
-         newItem.classList.add("active")
+        newItem.classList.add("active")
 
         newThumbnailItemContainer.querySelector(".overlay").classList.add("hide")
+        
+        infoContainerTitle.innerHTML = images[i].title;
+        infoContainerText.innerHTML = images[i].text;
+
     }
     
     
@@ -122,11 +134,18 @@ const images = [
         
         overlay.classList.add("hide")
         newItem.classList.add("active")
+
+        infoContainerTitle.innerHTML = images[itemCollection.indexOf(newItem)].title;
+        infoContainerText.innerHTML = images[itemCollection.indexOf(newItem)].text;
     
     }
     )
     
 }
+
+infoContainer.classList.add("info-container")
+itemContainer.append(infoContainer)
+
 
 
 
@@ -158,7 +177,7 @@ nextBtn.addEventListener("click", function(){
  
     j++;
     
-    if(j > slider.length - 1){
+    if(j > images.length - 1){
         
         j=0;      
         
@@ -166,6 +185,9 @@ nextBtn.addEventListener("click", function(){
     
     itemCollection[j].classList.add("active");
     overlayCollection[j].classList.add("hide");
+
+    infoContainerTitle.innerHTML = images[j].title;
+    infoContainerText.innerHTML = images[j].text;
 
   }
   )
@@ -190,24 +212,19 @@ nextBtn.addEventListener("click", function(){
         
         }
 
-     j--
+        j--
 
-     if(j<0){
+        if(j<0){
+            
+            j=images.length - 1 
         
-        j=slider.length - 1 
-    
-     }
+        }
 
-     itemCollection[j].classList.add("active");
-     overlayCollection[j].classList.add("hide");
+        itemCollection[j].classList.add("active");
+        overlayCollection[j].classList.add("hide");
 
-
-    
-    //  document.querySelector(`.item-container > img:nth-of-type(${j})`).classList.add("active")
-
-    //   document.querySelector(`.thumbnail-gallery > 
-    //                             div.thumbnail-item-container:nth-of-type(${j}) >
-    //                             .overlay`).style.display="none"
+        infoContainerTitle.innerHTML = images[j].title;
+        infoContainerText.innerHTML = images[j].text;
 
 
   }
