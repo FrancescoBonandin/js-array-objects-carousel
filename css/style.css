@@ -1,0 +1,142 @@
+/* reset */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*-------*/
+
+/*----GENERAL----*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+.my-container{
+    max-width: 1200px;
+    
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+
+}
+
+
+.item-container{
+    position: relative;
+    
+    width: 900px;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: calc((100vh - 600px) / 2 );
+    
+}
+
+.my-button{
+    position: absolute;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: bisque;
+    text-align: center;
+  
+}
+
+.my-button.previous{
+    top: 10px;
+    left: 50%;
+}
+
+.my-button.next{
+    bottom: 10px;
+    left: 50%;
+}
+
+.my-button.translated{
+    left: calc(100% - 100px);
+}
+
+.my-button > *{
+    line-height: 50px;
+}
+
+
+
+
+
+
+.item{
+
+    width: 100%;
+    height: 100%;
+    display: none;
+    
+}
+
+
+
+.item.active{
+    display: block;
+}
+
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail-gallery{
+    width: 300px;
+    height: 600px;
+    margin-top: calc((100vh - 600px) / 2 );
+    display:none;
+}
+
+.thumbnail-item-container{
+    position: relative;
+    width: 100%;
+    height: calc(100% / 5);
+    
+}
+
+.thumbnail-item{
+    width: 100%;
+    height: 100%;
+}
+
+.overlay{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.toggler{
+    position: absolute;
+
+    left:calc(100% + 80px);
+
+    bottom: calc(100% + 80px);
+
+    background-color: brown;
+    color: greenyellow;
+
+    height: 80px;
+    width: 80px;
+    border-radius: 20px;
+}
+
+.thumbnail-gallery.show{
+    display: block;
+}
+
+.thumbnail-item-container .overlay.hide{
+    display: none;
+}
